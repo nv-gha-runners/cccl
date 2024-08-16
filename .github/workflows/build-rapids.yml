@@ -52,7 +52,7 @@ jobs:
         run: echo "::add-matcher::$(pwd)/.github/problem-matchers/problem-matcher.json"
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::279114543810:role/gha-oidc-NVIDIA
+          role-to-assume: arn:aws:iam::279114543810:role/gha-oidc-nv-gha-runners
           aws-region: us-east-2
           role-duration-seconds: 43200 # 12h
       - name: Run command # Do not change this step's name, it is checked in parse-job-times.py
