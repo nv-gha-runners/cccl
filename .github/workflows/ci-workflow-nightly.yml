@@ -131,16 +131,3 @@ jobs:
         uses: ./.github/actions/workflow-results
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-  build-rapids:
-    name: Build RAPIDS
-    secrets: inherit
-    permissions:
-      actions: read
-      packages: read
-      id-token: write
-      contents: read
-      pull-requests: read
-    uses: ./.github/workflows/build-rapids.yml
-    with:
-      enable_slack_alerts: false
