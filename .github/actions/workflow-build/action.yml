@@ -43,21 +43,6 @@ outputs:
 runs:
   using: "composite"
   steps:
-
-    - name: Send Slack log notification
-      if: ${{inputs.slack_token != '' && inputs.slack_log != '' }}
-      uses: slackapi/slack-github-action@v1.26.0
-      env:
-        SLACK_BOT_TOKEN: ${{ inputs.slack_token }}
-        WORKFLOW_TYPE: ${{ github.workflow }} # nightly, weekly, pr, etc.
-        SUMMARY_URL: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
-      with:
-        channel-id: ${{ inputs.slack_log }}
-        slack-message: |
-          Workflow '${{ env.WORKFLOW_TYPE }}' starting...
-
-          Details: ${{ env.SUMMARY_URL }}
-
     - name: Inspect changes
       if: ${{ inputs.inspect_changes_script != '' && inputs.inspect_changes_base_sha != '' }}
       id: inspect-changes
@@ -122,18 +107,3 @@ runs:
         name: workflow
         path: workflow/
         compression-level: 0
-
-    - name: Send Slack error notification
-      if: ${{ failure() && inputs.slack_token != '' && (inputs.slack_alert != '' || inputs.slack_log != '') }}
-      uses: slackapi/slack-github-action@v1.26.0
-      env:
-        SLACK_BOT_TOKEN: ${{ inputs.slack_token }}
-        WORKFLOW_TYPE: ${{ github.workflow }} # nightly, weekly, pr, etc.
-        SUMMARY_URL: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
-        CHANNEL_SEP: ${{ (inputs.slack_log != '' && inputs.slack_alert != '') && ',' || ''}}
-      with:
-        channel-id: '${{ inputs.slack_log }}${{env.CHANNEL_SEP}}${{ inputs.slack_alert }}'
-        slack-message: |
-          Workflow '${{ env.WORKFLOW_TYPE }}' encountered an error while preparing to run.
-
-          Details: ${{ env.SUMMARY_URL }}
