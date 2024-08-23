@@ -429,7 +429,7 @@ def generate_dispatch_job_runner(matrix_job, job_type):
     gpu = get_gpu(matrix_job["gpu"])
     suffix = "-testing" if gpu["testing"] else ""
 
-    return f"{runner_os}-{cpu}-gpu-{gpu['id']}-560-1{suffix}"
+    return f"{runner_os}-{cpu}-gpu-{gpu['id']}-latest-1{suffix}"
 
 
 def generate_dispatch_job_ctk_version(matrix_job, job_type):
