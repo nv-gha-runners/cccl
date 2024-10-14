@@ -135,6 +135,7 @@ print_environment_details() {
   git log -1 --format=short || echo "Not a repository"
 
   if command -v nvidia-smi &> /dev/null; then
+    sudo nvidia-smi -i 0 -pm 1
     nvidia-smi
   else
     echo "nvidia-smi not found"
