@@ -532,7 +532,12 @@
     {
       "name": "cub-base",
       "hidden": true,
-      "inherits": "base"
+      "inherits": "base",
+      "filter": {
+        "exclude": {
+          "name": "^cub.*device_spmv$"
+        }
+      }
     },
     {
       "name": "cub-nolid-base",
@@ -540,7 +545,7 @@
       "inherits": "cub-base",
       "filter": {
         "exclude": {
-          "name": "^cub.*\\.lid_[0-2].*$"
+          "name": "^(cub.*\\.lid_[0-2].*|cub.*device_spmv)$"
         }
       }
     },
@@ -550,7 +555,7 @@
       "inherits": "cub-base",
       "filter": {
         "include": {
-          "name": "^cub.*\\.lid_0.*$"
+          "name": "^(cub.*\\.lid_0.*|cub.*device_spmv)$"
         }
       }
     },
@@ -560,7 +565,7 @@
       "inherits": "cub-base",
       "filter": {
         "include": {
-          "name": "^cub.*\\.lid_1.*$"
+          "name": "^(cub.*\\.lid_1.*|cub.*device_spmv)$"
         }
       }
     },
@@ -570,7 +575,7 @@
       "inherits": "cub-base",
       "filter": {
         "include": {
-          "name": "^cub.*\\.lid_2.*$"
+          "name": "^(cub.*\\.lid_2.*|cub.*device_spmv)$"
         }
       }
     },
